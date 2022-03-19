@@ -3,7 +3,7 @@
 /* Задачи LearnJS 5.5 */
 /* Переведите текст вида border-left-width в borderLeftWidth */
 
-/* function camelize(str) {
+function camelize(str) {
     let arr = str.split('-');
     console.log(arr);
     let str1 = arr.map(function (currentValue, index) {
@@ -17,11 +17,11 @@
     
 }
 camelize("background-color");
-camelize("background-color-power-center-cover"); */
+camelize("background-color-power-center-cover");
 
 
 /* Фильтрация по диапазону */
-/* let arr = [5, 3, 8, 1];
+let arr = [5, 3, 8, 1];
 let arr1;
 function filterRange(arr, a, b) {
     arr1 = arr.filter(function(item) {
@@ -31,12 +31,12 @@ function filterRange(arr, a, b) {
 }
 filterRange(arr, 1, 4);
 alert(arr1);
- */
+
 
 
 /* Сортировать в порядке по убыванию */
 
-/* let arr = [5, 2, 1, -10, 8];
+let arr = [5, 2, 1, -10, 8];
 
 function compareNumeric(a, b) {
     if (a < b) {return 1;}
@@ -44,12 +44,12 @@ function compareNumeric(a, b) {
     if (a > b) {return -1;}
 }
 arr.sort(compareNumeric);
-alert(arr); */
+alert(arr);
   
 
 /* Скопировать и отсортировать массив */
 
-/* let arr = ["HTML", "JavaScript", "CSS"];
+let arr = ["HTML", "JavaScript", "CSS"];
 
 function copySorted(arr){
     return arr.slice().sort();
@@ -57,12 +57,12 @@ function copySorted(arr){
 let sorted = copySorted(arr);
 
 alert( sorted ); // CSS, HTML, JavaScript
-alert( arr ); // HTML, JavaScript, CSS (без изменений) */
+alert( arr ); // HTML, JavaScript, CSS (без изменений)
 
 
 /* Создать расширяемый калькулятор */
 
-/* function Calculator() {
+function Calculator() {
 
     this.methods = {
         "-": (a, b) => a - b,
@@ -90,22 +90,23 @@ alert( arr ); // HTML, JavaScript, CSS (без изменений) */
 
 let calc = new Calculator();
 
-alert( calc.calculate("3 + 7") ); */
+alert( calc.calculate("3 + 7") );
 
 
 
 /* Трансформировать в массив имён */
 
-/* let vasya = { name: "Вася", age: 25 };
+let vasya = { name: "Вася", age: 25 };
 let petya = { name: "Петя", age: 30 };
 let masha = { name: "Маша", age: 28 };
 
 let users = [ vasya, petya, masha ];
 
 let names = users.map(item => item.name);
-alert( names); */
+alert( names);
 
-/* 
+
+
 let vasya = { name: "Вася", surname: "Пупкин", id: 1 };
 let petya = { name: "Петя", surname: "Иванов", id: 2 };
 let masha = { name: "Маша", surname: "Петрова", id: 3 };
@@ -116,14 +117,14 @@ let usersMapped = users.map (item => ({fullName : item.name + ' ' + item.surname
 
 
 alert( usersMapped[0].id );
-alert( usersMapped[0].fullName ); */
+alert( usersMapped[0].fullName );
 
 
 
 
 /* Отсортировать пользователей по возрасту */
 
-/* let vasya = { name: "Вася", age: 25 };
+let vasya = { name: "Вася", age: 25 };
 let petya = { name: "Петя", age: 30 };
 let masha = { name: "Маша", age: 28 };
 
@@ -137,7 +138,7 @@ sortByAge(arr);
 // теперь: [vasya, masha, petya]
 alert(arr[0].name); // Вася
 alert(arr[1].name); // Маша
-alert(arr[2].name); // Петя */
+alert(arr[2].name); // Петя
 
 
 /* Получить средний возраст */

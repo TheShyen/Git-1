@@ -1,21 +1,5 @@
 'use strict';
 
-/* function moveToStart (arr, n) {
-    if (n < arr.length) {
-        return (arr.slice(-n) + "," + arr.slice(0, n-1)).split(",");
-    } else {
-        return arr.slice(0);
-    }
-}
-
-console.log(
-    moveToStart([1, 2, 3, 4, 5, 6, 7], 4)
-);
- */
-
-/* Выше говнокод */
-
-
 /* №1 */
 /* Функция переставляет n элементов массива из конца в начало. */
 

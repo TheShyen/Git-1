@@ -29,16 +29,16 @@ f();
 /* Числа Фибоначчи с помощью замыканий; */
 
 function getFib() {
-	let a = 1;
-	let b = 1;
+    let a = 1;
+    let b = 1;
     console.log(a);
     console.log(b);
-	return function() {
-		let c = a + b;
+    return function() {
+        let c = a + b;
         a = b;
         b = c;
         console.log(b);
-	};
+    };
 }
 
 let a = getFib();

@@ -15,7 +15,12 @@ prom.then(
 );
 
 console.log(val);
-
+console.log(prom); 
+/* Promise {<pending>}
+[[Prototype]]: Promise
+[[PromiseState]]: "fulfilled"
+[[PromiseResult]]: "aboba" */
+console.log(typeof prom); // object
 setTimeout(() => console.log(val), 2000);
 // в результате 222/aboba/aboba
 

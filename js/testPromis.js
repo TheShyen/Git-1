@@ -1,7 +1,7 @@
 'use strict';
 // then возвращает промис. Значения возвращаемые из колбэков 
 // будут автоматически обёрнуты в промис.
-/* let p1 = new Promise(function(resolve, reject) {
+let p1 = new Promise(function(resolve, reject) {
     resolve(1);
 });
   
@@ -15,10 +15,10 @@ p1.then(function(value) {
 p1.then(function(value) {
     console.log(value); // 1
 });
- */
 
 
-/* function resolveLater(resolve, reject) {
+
+function resolveLater(resolve, reject) {
     setTimeout(function () {
         resolve(10);
     }, 1000);
@@ -50,7 +50,7 @@ p3.then(function(v) {
     console.log("resolved", v);
 }, function(e) {
     console.log("rejected", e); // "rejected", 20
-}); */
+});
 
 // Что будет, если на завершенный промис добавить .then()?
 
@@ -59,4 +59,14 @@ let promise = new Promise(resolve => resolve("готово!"));
 promise.then(console.log);
 promise.then(console.log);
 promise.then(console.log); // готово! (выведется сразу)
-  
+
+
+setTimeout(() => alert("timeout"));
+
+Promise.resolve()
+    .then(() => alert("promise"));
+
+alert("code");
+// сначала "code", т.к синхронный вызов
+// потом "promise", потому что .then проходит через очередь микрозадач и выполняется синхронного кода.
+// потом "timeout" , т.к это макрозадача

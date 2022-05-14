@@ -88,7 +88,7 @@ const p2 = new Promise((resolve, reject) => {
     }, 2000);
 });
 
-const p = Promise.any([p1, p2]);
+const p = Promise.myAny([p1, p2]);
 p.then((value) => {
     console.log("Returned Promise");
     console.log(value); // 1

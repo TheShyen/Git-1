@@ -5,24 +5,15 @@ Promise будет отклонён (rejected) с одним из значени
 
 Promise.myAny = function (promis) {
     let errors = [];
-    let resolved;
     return new Promise(function (resolve, reject) {
         for (let i = 0; i < promis.length; i++) {
             promis[i].then(
                 (result) => {
-                    if (resolved) {
-                        return;
-                    }
-                    resolved = true;
                     resolve(result);
                 },
 
                 (error) => {
-                    if (resolved) {
-                        return;
-                    }
                     errors = errors.concat(error);
-
                     if (errors.length === promis.length) {
                         reject(errors);
                     }

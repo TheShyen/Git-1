@@ -10,17 +10,21 @@ Promise.myAnyRes = function (promis, counts) {
         for (let i = 0; i < promis.length; i++) {
             promis[i].then(
                 (result) => {
-                    results = results.concat(result);
+                    results.push(result);
                     if (results.length == counts){
                         resolve(results);
                     }
-                },
-
-                (error) => {
-                    errors = errors.concat(error);
-                    if (errors.length == promis.length - results.length) {
-                        reject(errors);
+                    if (i == promis.length - 1){
+                        throw errors[errors.length - 1];
                     }
+                }
+            ).catch(
+                (error) => {
+                    errors.push(error);
+                    if (i == promis.length - 1) {
+                        errors.pop(error);
+                        reject(errors);  
+                    } 
                 }
             );
         }
@@ -29,12 +33,11 @@ Promise.myAnyRes = function (promis, counts) {
 
 // тесты
 
-
 const p1 = new Promise((resolve, reject) => {
     setTimeout(() => {
         console.log("Promise 1 rejected");
         reject("error");
-    }, 1000);
+    }, 2000);
 });
 
 const p2 = new Promise((resolve, reject) => {
@@ -45,38 +48,69 @@ const p2 = new Promise((resolve, reject) => {
 });
 const p3 = new Promise((resolve, reject) => {
     setTimeout(() => {
-        console.log("Promise 2 fulfilled");
+        console.log("Promise 3 fulfilled");
         resolve(3);
     }, 2000); 
 });
 const p4 = new Promise((resolve, reject) => {
     setTimeout(() => {
-        console.log("Promise 2 rejected");
+        console.log("Promise 4 rejected");
         reject("error2");
     }, 2000);
 });
 const p5 = new Promise((resolve, reject) => {
     setTimeout(() => {
-        console.log("Promise 2 rejected");
+        console.log("Promise 5 rejected");
         reject("error3");
     }, 2000);
 });
+const p6 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log("Promise 6 fulfilled");
+        resolve(4);
+    }, 2000); 
+});
+const p7 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve(5);
+        console.log("Promise 7 fulfilled");
+    }, 2000); 
+});
+const p8 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log("Promise 8 rejected");
+        reject("error4");
+    }, 2000);
+});
+const p9 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log("Promise 9 rejected");
+        reject("error5");
+    }, 2000);
+});
+const p10 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve(6);
+        console.log("Promise 10 fulfilled");
+    }, 2000); 
+});
 
-const p = Promise.myAnyRes([p1, p2, p3, p4, p5], 3);
+
+const p = Promise.myAnyRes([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10], 6);
 p.then(
     (value) => {
         console.log(value); 
     },
     (e) => {
         console.log("Returned Promise");
-        console.log(e); // ['error', 'error2', 'error3']
+        console.log(e); // ['error', 'error2', 'error3', 'error4', 'error5']
     }
 );
 
-const a = Promise.myAnyRes([p1, p2, p3, p4, p5], 2);
+const a = Promise.myAnyRes([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10], 4);
 a.then(
     (value) => {
-        console.log(value); // [2, 3]
+        console.log(value); // [2, 3, 4, 5]
     },
     (e) => {
         console.log("Returned Promise");
